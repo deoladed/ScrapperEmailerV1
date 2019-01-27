@@ -10,9 +10,10 @@ class View
 		end
 	end
 
-	def random_choose(ramdom_choices)
+	def random_choose(random_choices)
+		print "\nChoix en cours..."
 		puts "\nCibles du jour :"
-    ramdom_choices.each.with_index do |mairie, i|
+    random_choices.each.with_index do |mairie, i|
       puts "> #{i+1} : #{mairie[36..-6].capitalize}"
     end
   end

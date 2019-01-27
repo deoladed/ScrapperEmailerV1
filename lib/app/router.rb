@@ -12,29 +12,27 @@ class Router
 		puts "Hello!\nBienvenue dans El Scrappppper"
 		puts "On commence par recuperer la liste des departements de France\n C'est parti"
 		@controler.get_departements
-		random_choose
-	end
-
-	def random_choose
-		print "\nOn en choisi 3 au hasard..."
-		@controler.random_choose
 		scrap_emails
 	end
 
 	def scrap_emails
 	while true
-		puts "\nCa te va (dit OUI) ou on en choisi trois autres (dit NON)?"
-		puts ""
+		# puts "\nCa te va (dit OUI) ou on en choisi trois autres (dit NON)?"
+		puts "\nOn en choisi TROIS au hasard ?"
 		puts "Si tu veux TOUTES les mairies de france, dit ALL"
 		puts "Si tu n'en veux qu'une, dit CHOIX"
 		puts "Si tu veux quitter dit BYE"
 		print ">"
 		case gets.chomp.downcase
-		when "oui"
+		when "trois"
+			@controler.random_choose
 			@controler.scrap_urls
 			send_emails
-		when "non"
-			random_choose
+		# when "oui"
+		# 	@controler.scrap_urls
+		# 	send_emails
+		# when "non"
+		# 	random_choose
 		when "all"
 			@controler.scrap_ALL_urls
 			send_emails
@@ -43,6 +41,7 @@ class Router
 			send_emails
 		when 'bye'
 			puts "Tchaaaaaooo"
+			false
 			break
 		else
 			puts "Je n'ai pas compris votre reponse"
@@ -51,6 +50,8 @@ class Router
 	end
 	end	
 
+
+#METTRE DANS CONTROLLER
 	def send_emails
 		puts "\n\nOn envoie ce petit mail aux mairies?"
 		@controler.view.send_emails
@@ -58,7 +59,7 @@ class Router
 			when "oui"
 				@controler.send_emails
 			when "non"
-				puts "Ok tant pis, salut !"
+				puts "Ok tant pis!"
 				# break
 				return
 			else
