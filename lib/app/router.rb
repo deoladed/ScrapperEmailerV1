@@ -27,7 +27,7 @@ class Router
 		when "trois"
 			@controler.random_choose
 			@controler.scrap_urls
-			send_emails
+			@controler.send_emails
 		# when "oui"
 		# 	@controler.scrap_urls
 		# 	send_emails
@@ -35,10 +35,10 @@ class Router
 		# 	random_choose
 		when "all"
 			@controler.scrap_ALL_urls
-			send_emails
+			@controler.send_emails
 		when 'choix'
 			@controler.scrap_by_choice
-			send_emails
+			@controler.send_emails
 		when 'bye'
 			puts "Tchaaaaaooo"
 			false
@@ -50,21 +50,3 @@ class Router
 	end
 	end	
 
-
-#METTRE DANS CONTROLLER
-	def send_emails
-		puts "\n\nOn envoie ce petit mail aux mairies?"
-		@controler.view.send_emails
-		case gets.chomp.downcase
-			when "oui"
-				@controler.send_emails
-			when "non"
-				puts "Ok tant pis!"
-				# break
-				return
-			else
-			puts "Je n'ai pas compris votre reponse"
-			send_emails
-		end
-	end	
-end

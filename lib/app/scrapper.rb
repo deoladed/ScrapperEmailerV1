@@ -20,16 +20,21 @@ class Scrapper
   	3.times do |i|
       @random_choices << @urlsdep[rand(100)]
     end
+    puts @random_choices
     @random_choices
   end
 
   def scrap_urls(dep_urls)
+  	puts "nous allons scrapper :"
+  	p dep_urls
   	dep_urls.each.with_index do |ville, i|
  	    puts "#{i+1}. Recuperation des adresses des mairies de #{ville[36..-6].capitalize}..."
       doc = Nokogiri::HTML(open(ville)) # recuperation des urls
       doc.xpath('//p/a[@class = "lientxt"]').each { |node| @urlsvilles << node['href'][1..-1]}
     end
+    p @urlsvilles
   	@urlsvilles.map! {|url| "https://www.annuaire-des-mairies.com" + url }
+  	p @urlsvilles
   end
 
   def scrap_emails
@@ -37,6 +42,7 @@ class Scrapper
   	ville = []
   	compteur = @urlsvilles.count # creation d'un compteur
     @urlsvilles.each.with_index do |townhall_url, i| # recuperation nom de ville et emails
+    	puts townhall_url
       break if i == 2
       doc = Nokogiri::HTML(open(townhall_url))
       doc.xpath('//html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').each { |node| email << node.text }

@@ -45,7 +45,18 @@ class View
   end
 
   def send_emails
+  	puts "\n\nOn envoie ce petit mail aux mairies?"
 		puts "Mme, Mr le Maire de VILLE,\nVendredi dernier, notre president a renonce a sa promesse d'interdiction du Glyphosate (https://www.lemonde.fr/politique/article/2019/01/25/le-president-renonce-a-sa-promesse-d-interdire-le-glyphosate-en-2021_5414363_823448.html).\nSi cela vous revolte, je vous encourage a donner votre avis en tant qu'insitution Francaise.\nS'il-vous-plait, faites un geste.\nMerci, cordialement,\nLeo ROBERT"
 		print ">"
+		case gets.chomp.downcase
+			when "oui"
+				return true
+			when "non"
+				puts "Ok tant pis!"
+				return
+			else
+			puts "Je n'ai pas compris votre reponse"
+			send_emails
+		end
 	end
 end

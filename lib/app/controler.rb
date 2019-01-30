@@ -25,6 +25,8 @@ class Controler
 	end
 
 	def scrap_urls
+		puts "RANDOM CHOICE"
+		puts @scrap.random_choices
 		@scrap.scrap_urls(@scrap.random_choices)
 		@view.scrap_urls(@scrap.urlsvilles)
 		@saver.scrap_urls(@scrap.urlsvilles)
@@ -52,6 +54,6 @@ class Controler
 	end
 
 	def send_emails
-		@emailer.send_emails
+		@view.send_emails ?	@emailer.send_emails : return
 	end
 end
